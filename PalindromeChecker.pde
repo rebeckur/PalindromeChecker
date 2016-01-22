@@ -23,7 +23,7 @@ public boolean palindrome(String word)
   half1 = halfString(word);
   half2 = reverseString(word);
 
-  System.out.println(half1 + " " + half2);
+  //System.out.println("Is " + half1 + " the same as " + half2);
   if(half1.equals(half2))
   {
     return true;
@@ -35,21 +35,32 @@ public String noSpaces(String sWord)
   String modified = new String();
   for (int i = 0; i < sWord.length(); i++)
   {
-     if (!sWord.substring(i, i+1).equals(" ") && !sWord.substring(i, i+1).equals("!") && !sWord.substring(i, i+1).equals(",") && !sWord.substring(i, i+1).equals("'") && !sWord.substring(i, i+1).equals("."))
+     if (Character.isLetter(sWord.charAt(i)))
      {
-       modified+=sWord.substring(i, i+1);
+       modified+=sWord.charAt(i);
      }
   }
-  System.out.println("modified: "+ modified.toLowerCase());
+  //System.out.println("modified: "+ modified.toLowerCase());
   return modified.toLowerCase();
 }
 public String reverseString(String sWord)
 {
   String reverse = new String();
-  for (int i = sWord.length()-1; i > sWord.length()/2; i--)
+  if (sWord.length() % 2 == 0)
   {
-    reverse += sWord.charAt(i);
+    for (int i = sWord.length()-1; i >= sWord.length()/2; i--)
+    {
+      reverse += sWord.charAt(i);
+    }
   }
+  else
+  {
+    for (int i = sWord.length()-1; i > sWord.length()/2; i--)
+    {
+      reverse += sWord.charAt(i);
+    }
+  }
+  
   return reverse;
 }
 public String halfString(String sWord)
